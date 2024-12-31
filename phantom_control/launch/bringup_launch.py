@@ -84,8 +84,8 @@ def generate_launch_description():
     
    
     return LaunchDescription([
-        coppelia,
-        rviz,
+        # coppelia,
+        # rviz,
         # joint_state_pub, => ANdres Morales Change 
         robot_state_pub,
         control_node
