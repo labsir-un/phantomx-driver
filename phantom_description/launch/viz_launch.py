@@ -1,5 +1,6 @@
 from launch import LaunchDescription
 from ament_index_python.packages import get_package_share_directory
+
 from launch_ros.actions import Node
 import os, xacro
 """
@@ -23,6 +24,8 @@ def generate_launch_description():
          ]
         )
     
+   
+
     # Now read the urdf 
     doc = xacro.process_file(os.path.join(pkg_path,'urdf', 'turtlebot_arm.urdf.xacro' ), mappings={})
     robot_desc = doc.toprettyxml(indent='  ')

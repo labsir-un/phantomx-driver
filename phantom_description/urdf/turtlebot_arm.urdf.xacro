@@ -16,6 +16,10 @@
 
     <!-- Included URDF Files -->   
     <xacro:include filename="$(find phantom_description)/urdf/turtlebot_arm.xacro"/>
+    <xacro:include filename="$(find phantom_control)/description/phantom.ros2_control.xacro"/>
+
+    <xacro:call macro="phantom_ros2_control" name="turtlebot_arm" prefix="">
+    </xacro:call>
 
     <!-- As we don't have here a turtlebot base, add a base_link link as its location reference -->
     <link name="base_link"/>

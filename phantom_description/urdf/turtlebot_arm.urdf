@@ -5,7 +5,7 @@
 <!-- =================================================================================== -->
 <!-- Describe URDF for Turtlebot Arm -->
 <robot name="turtlebot_arm" xmlns:xacro="http://ros.org/wiki/xacro">
-  <!-- We can configure joints velocity limit and lower/upper limits
+  <!-- We can configure s velocity limit and lower/upper limits
           to allow access to different operational areas, e.g. left handed vs. right handed robot -->
   <!-- Included URDF Files -->
   <material name="White">
