@@ -19,7 +19,7 @@
           <param name="max">1</param>
         </command_interface>
         <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        
       </joint>
       <joint name="${prefix}arm_shoulder_pan_joint">
         <command_interface name="position">
@@ -27,7 +27,7 @@
           <param name="max">1</param>
         </command_interface>
         <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        
       </joint>
 
         <joint name="${prefix}arm_elbow_flex_joint">
@@ -36,7 +36,7 @@
           <param name="max">1</param>
         </command_interface>
         <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        
       </joint>
 
  
