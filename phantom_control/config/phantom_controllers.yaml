@@ -2,18 +2,38 @@ controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
 
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
     joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
     
     position_controller:
       type: position_controllers/JointGroupPositionController
 
+joint_state_broadcaster:
+  ros__parameters:
+    joints:
+      - arm_shoulder_pan_joint
+      - arm_shoulder_lift_joint
+      - arm_elbow_flex_joint
+      - arm_wrist_flex_joint
+    extra_joints:
+      - arm_base_joint
+      - gripper_joint
+      - gripper_joint_prismatic1
+      - gripper2_joint
+
+    interface_name: position
+
+
 joint_trajectory_controller:
   ros__parameters:
     joints:
       - arm_base_joint
-      - arm_shoulder_pan_joint
+      - arm_shoulder_lift_joint
       - arm_elbow_flex_joint
+      - arm_wrist_flex_joint
 
     command_interfaces:
       - position
@@ -47,6 +67,7 @@ joint_trajectory_controller:
 position_controller:
   ros__parameters:
     joints:
-      - arm_base_joint
       - arm_shoulder_pan_joint
+      - arm_shoulder_lift_joint
       - arm_elbow_flex_joint
+      - arm_wrist_flex_joint

@@ -1,0 +1,10 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/usr/local/Caskroom/miniforge/base/envs/humble/lib/python310/site-packages",
+        "/usr/local/Caskroom/miniforge/base/envs/humble/lib/python3.10/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/usr/local/Caskroom/miniforge/base/envs/humble/lib/python310/site-packages",
+        "/usr/local/Caskroom/miniforge/base/envs/humble/lib/python3.10/site-packages"
+    ]
+}

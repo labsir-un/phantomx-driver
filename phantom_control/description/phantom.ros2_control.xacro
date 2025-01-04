@@ -6,14 +6,11 @@
     <ros2_control name="${name}" type="system">
       <hardware>
         <plugin>phantom_control/TopicBasedSystem</plugin>
-          <param name="joint_commands_topic">/topic_based_joint_commands</param>
-          <param name="joint_states_topic">/joint_states</param>
-        <!-- <param name="example_param_hw_start_duration_sec">0</param>
-        <param name="example_param_hw_stop_duration_sec">3.0</param>
-        <param name="example_param_hw_slowdown">30</param> -->
+          <param name="joint_commands_topic">/coppelia/joint_commands</param>
+          <param name="joint_states_topic">/coppelia/joint_states</param>
       </hardware>
 
-      <joint name="${prefix}arm_base_joint">
+      <joint name="${prefix}arm_shoulder_pan_joint">
         <command_interface name="position">
           <param name="min">-1</param>
           <param name="max">1</param>
@@ -21,7 +18,7 @@
         <state_interface name="position"/>
         
       </joint>
-      <joint name="${prefix}arm_shoulder_pan_joint">
+      <joint name="${prefix}arm_shoulder_lift_joint">
         <command_interface name="position">
           <param name="min">-1</param>
           <param name="max">1</param>
@@ -31,6 +28,15 @@
       </joint>
 
         <joint name="${prefix}arm_elbow_flex_joint">
+        <command_interface name="position">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        
+      </joint>
+
+          <joint name="${prefix}arm_wrist_flex_joint">
         <command_interface name="position">
           <param name="min">-1</param>
           <param name="max">1</param>

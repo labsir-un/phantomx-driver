@@ -11,7 +11,7 @@ def generate_launch_description():
     
     # Make sure each part of the command is passed as a separate list element
     coppelia_node = ExecuteProcess(
-        cmd=[[cmd_str, " -f", scene_path]],  # Correct command structure
+        cmd=[[cmd_str, " -f", scene_path, " -s0"]],  # Correct command structure
         shell=True
     )
    

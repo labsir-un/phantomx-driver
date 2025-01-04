@@ -41,9 +41,7 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz',  
-        parameters=[
-             '-d '+ os.path.join(pkg_dir_description, 'config', 'rviz_viz.rviz')
-         ]
+         arguments=["-d", os.path.join(pkg_dir_description, 'config', 'rviz_viz.rviz')]
         )
     
 
@@ -54,11 +52,11 @@ def generate_launch_description():
         parameters=[robot_description]
     )
 
-    # joint_state_pub = Node(
-    #     package='joint_state_publisher', 
-    #     executable='joint_state_publisher'
-    #     # parameters=[params]
-    # )
+    joint_state_pub = Node(
+        package='joint_state_publisher', 
+        executable='joint_state_publisher'
+        # parameters=[params]
+    )
 
 
     robot_controllers = PathJoinSubstitution(
@@ -76,17 +74,38 @@ def generate_launch_description():
         executable="ros2_control_node",
         parameters=[robot_description, robot_controllers],
         output="both",
-        # remappings=[
-        #     ("~/robot_description", "/robot_description"),
-        # ],
+        remappings=[
+            ("~/robot_description", "/robot_description"),
+        ],
+    )
+
+    # Delay 
+    # delay_control_node_until_coppeliasim = ExecuteProcess([
+
+    # ])
+
+    position_controller_node = Node(
+        package='controller_manager', 
+        executable="spawner", 
+        arguments=["position_controller", "--controller-manager", "/controller_manager"], 
+        parameters=[""]
+    )
+
+    joint_broadcaster_node = Node(
+        package='controller_manager', 
+        executable="spawner", 
+        arguments=["joint_state_broadcaster" , "--controller-manager", "/controller_manager"], 
+        parameters=[""]
     )
 
     
    
     return LaunchDescription([
         coppelia,
-        # rviz,
-        # joint_state_pub, => ANdres Morales Change 
+        rviz,
+        # joint_state_pub,
         robot_state_pub,
-        control_node
+        control_node,
+        position_controller_node,
+        joint_broadcaster_node
         ])

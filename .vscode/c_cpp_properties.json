@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/Users/amoralesma/Documents/projects/labsir-un/phantomx-driver/install/phantom_control/include/**",
+        "/Users/amoralesma/Documents/projects/controllers/install/velocity_controllers/include/**",
+        "/usr/local/Caskroom/miniforge/base/envs/humble/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/phantomx-driver/src/phantomx-driver/phantom_control/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/phantomx-driver/src/phantomx-driver/phantom_coppelia/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/phantomx-driver/src/phantomx-driver/phantom_description/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

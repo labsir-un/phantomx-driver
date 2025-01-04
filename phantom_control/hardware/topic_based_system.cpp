@@ -27,6 +27,9 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 /* Author: Jafar Abdi */
+
+
+
 #include <algorithm>
 #include <cmath>
 #include <iterator>
@@ -147,7 +150,7 @@ CallbackReturn TopicBasedSystem::on_init(const hardware_interface::HardwareInfo&
   topic_based_joint_commands_publisher_ = node_->create_publisher<sensor_msgs::msg::JointState>(
       get_hardware_parameter("joint_commands_topic", "/robot_joint_commands"), rclcpp::QoS(1));
   topic_based_joint_states_subscriber_ = node_->create_subscription<sensor_msgs::msg::JointState>(
-      get_hardware_parameter("joint_states_topic", "/robot_joint_states"), rclcpp::SensorDataQoS(),
+      get_hardware_parameter("joint_states_topic", "/topic_based_joint_commands"), rclcpp::SensorDataQoS(),
       [this](const sensor_msgs::msg::JointState::SharedPtr joint_state) { latest_joint_state_ = *joint_state; });
 
   // if the values on the `joint_states_topic` are wrapped between -2*pi and 2*pi (like they are in Isaac Sim)
