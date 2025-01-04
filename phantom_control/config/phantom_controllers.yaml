@@ -30,7 +30,7 @@ joint_state_broadcaster:
 joint_trajectory_controller:
   ros__parameters:
     joints:
-      - arm_base_joint
+      - arm_shoulder_pan_joint
       - arm_shoulder_lift_joint
       - arm_elbow_flex_joint
       - arm_wrist_flex_joint
@@ -43,26 +43,9 @@ joint_trajectory_controller:
 
     action_monitor_rate: 20.0
 
-    allow_partial_joints_goal: true
-    open_loop_control: true
-    set_last_command_interface_value_as_state_on_activation: false
-
-    constraints:
-      stopped_velocity_tolerance: 0.1  # Tolerance for velocity when the joint is considered stopped
-      goal_time: 2.0                   # Time allowed to reach the goal position
-
-      arm_base_joint:                  # Constraints for arm_base_joint
-        trajectory: 0.05               # Allowed trajectory tolerance
-        goal: 0.1                     # Allowed goal tolerance
-
-      arm_shoulder_pan_joint:          # Constraints for arm_shoulder_pan_joint
-        trajectory: 0.05               # Allowed trajectory tolerance
-        goal: 0.1                    # Allowed goal tolerance
-
-      arm_elbow_flex_joint:            # Constraints for arm_elbow_flex_joint
-        trajectory: 0.05               # Allowed trajectory tolerance
-        goal: 0.1                     # Allowed goal tolerance
-
+    allow_partial_joints_goal: false
+    open_loop_control: false
+    set_last_command_interface_value_as_state_on_activation: true
 
 position_controller:
   ros__parameters:

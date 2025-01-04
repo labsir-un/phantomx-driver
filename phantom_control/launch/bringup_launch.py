@@ -72,7 +72,7 @@ def generate_launch_description():
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[robot_description, robot_controllers],
+        parameters=[robot_controllers],
         output="both",
         remappings=[
             ("~/robot_description", "/robot_description"),
@@ -87,7 +87,7 @@ def generate_launch_description():
     position_controller_node = Node(
         package='controller_manager', 
         executable="spawner", 
-        arguments=["position_controller", "--controller-manager", "/controller_manager"], 
+        arguments=["joint_trajectory_controller", "--controller-manager", "/controller_manager"], 
         parameters=[""]
     )
 
