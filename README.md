@@ -21,7 +21,7 @@ Clone this repo and configure the workspace.
 mkdir phantom_ws && cd phantom_ws
 mkdir src && cd src
 git clone https://github.com/labsir-un/phantomx-driver.git
-cd ../.. 
+cd ..
 ```
 build and source the project 
 ```bash
