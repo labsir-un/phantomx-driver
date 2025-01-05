@@ -12,6 +12,7 @@ def generate_launch_description():
     
     pkg_dir = get_package_share_directory('phantom_coppelia')
     pkg_dir_description = get_package_share_directory('phantom_description')
+    pkg_dir_control = get_package_share_directory('phantom_control')
 
     scene_path = os.path.join(pkg_dir, "scenes", "spheres.ttt")
 
@@ -41,7 +42,7 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz',  
-         arguments=["-d", os.path.join(pkg_dir_description, 'config', 'rviz_viz.rviz')]
+         arguments=["-d", os.path.join(pkg_dir_control, 'config', 'coppelia_rgb_depth_rviz.rviz')]
         )
     
 
