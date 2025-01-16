@@ -1,0 +1,9 @@
+<library path="phantom_control">
+  <class name="phantom_control/PhantomPincherSystem"
+         type="phantom_control::PhantomPincherSystem"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      The phantom_control hardware plugin implementing the SystemInterface.
+    </description>
+  </class>
+</library>

@@ -13,6 +13,7 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   angles
   sensor_msgs
   rclpy
+  dynamixel_sdk
 )
 
 foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
@@ -23,13 +24,21 @@ endforeach()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(dynamixel_sdk REQUIRED)
 
 # Compile 
 add_library(
   phantom_control
   SHARED
   hardware/topic_based_system.cpp
+  hardware/phantom_pincher_system.cpp
 )
+
+# add_library(
+#   pincher_control
+#   SHARED
+#   hardware/phantom_pincher_system.cpp
+# )
 
 
 target_compile_features(phantom_control PUBLIC cxx_std_17)
@@ -44,6 +53,7 @@ ament_target_dependencies(
 
 # Export hardware plugins
 pluginlib_export_plugin_description_file(hardware_interface phantom_control.xml)
+pluginlib_export_plugin_description_file(hardware_interface pincher_control.xml) # Andres 
 
 
 # INSTALL
