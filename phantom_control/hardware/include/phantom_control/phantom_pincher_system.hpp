@@ -77,6 +77,7 @@ private:
   int ADDR_PRESENT_VELOCITY_; 
   int BAUDRATE_; 
 
+  bool firstMove = true; 
   int present_position; 
   
   
