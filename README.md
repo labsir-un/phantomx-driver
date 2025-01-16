@@ -40,6 +40,8 @@ You should be seeing the coppelia scene and rviz2 running up. Under the hood, ro
 
 
 
+### The PhantomX Pincher 
+All the doc for de Px-100 version can be found here [https://emanual.robotis.com/docs/en/dxl/x/xl430-w250/]()
 
 
 ### Author 

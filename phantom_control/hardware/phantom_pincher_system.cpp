@@ -225,6 +225,10 @@ CallbackReturn PhantomPincherSystem::on_configure(const rclcpp_lifecycle::State 
     RCLCPP_INFO(node_ -> get_logger(), "Succeeded to enable torque.");
   }
 
+   for (size_t i = 0; i < joint_commands_[POSITION_INTERFACE_INDEX].size(); ++i) {
+        joint_commands_[POSITION_INTERFACE_INDEX][i] = joint_states_[POSITION_INTERFACE_INDEX][i];
+    }
+
   return CallbackReturn::SUCCESS;
 
 
@@ -290,10 +294,22 @@ hardware_interface::return_type PhantomPincherSystem::read(const rclcpp::Time& /
               &dxl_error
             );
 
-      joint_states_[POSITION_INTERFACE_INDEX][i] = present_position;
-      RCLCPP_INFO(node_ -> get_logger(), "Joint state (ID: %d) at: %d", i + 1, present_position); 
+            // dxl_comm_result = packetHandler->read4ByteTxRx(
+            //   portHandler,
+            //   (uint8_t) i + 1,
+            //   ADDR_PRESENT_VELOCITY_,
+            //   reinterpret_cast<uint32_t *>(&present_velocity),
+            //   &dxl_error
+            // );
 
-        
+      // convert to angle 
+      float current_angle = 0.087891f * present_position * 3.14 / 180.0f; // Unitscale form dynamixel wizard 
+
+      joint_states_[POSITION_INTERFACE_INDEX][i] = current_angle;
+
+      if(i == 0)
+        RCLCPP_INFO(node_ -> get_logger(), "  - [ID: %d] %f (deg)", i + 1, current_angle); 
+
   }
 
     
@@ -357,6 +373,24 @@ bool PhantomPincherSystem::getInterface(const std::string& name, const std::stri
 
 hardware_interface::return_type PhantomPincherSystem::write(const rclcpp::Time& /*time*/, const rclcpp::Duration& /*period*/)
 {
+
+  RCLCPP_INFO(node_ -> get_logger(), "[n: %d] [size: %d]", joint_commands_.size(), joint_commands_[POSITION_INTERFACE_INDEX].size()); 
+
+  for(int i = 0; i < joint_commands_[POSITION_INTERFACE_INDEX].size(); i++){
+    float cmd = joint_commands_[POSITION_INTERFACE_INDEX][i] * (180.0f / 3.14f) * 1.0f / 0.087891f; 
+    RCLCPP_INFO(node_ -> get_logger(), "[ID %d] to %2f", i + 1, cmd); 
+    
+    if(false)
+     dxl_comm_result =
+      packetHandler->write4ByteTxRx(
+        portHandler,
+        (uint8_t) i + 1,
+        ADDR_POSITION_GOAL_,
+        joint_commands_[POSITION_INTERFACE_INDEX][i] * (180.0f / 3.14f) * 1.0f / 0.087891f,
+        &dxl_error
+      );
+  }
+
   // To avoid spamming TopicBased's joint command topic we check the difference between the joint states and
   // the current joint commands, if it's smaller than a threshold we don't publish it.
   // const auto diff = std::transform_reduce(
