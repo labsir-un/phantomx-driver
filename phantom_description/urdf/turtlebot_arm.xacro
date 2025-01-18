@@ -16,7 +16,7 @@
     <color rgba="0.22 0.32 0.14 1.0"/>
   </material>
 
-  <xacro:macro name="turtlebot_arm" params="parent color pincher_gripper turtlebot_gripper gripper_color *origin">
+  <xacro:macro name="turtlebot_arm" params="parent color pincher_gripper turtlebot_gripper gripper_color phantom_x_100 *origin">
     <link name="arm_base_link"/>
     <joint name="arm_base_joint" type="fixed">
       <xacro:insert_block name="origin"/>
@@ -67,9 +67,21 @@
     </xacro:call >
 
     <!-- elbow joint -->
-    <xacro:call macro="dynamixel_AX12_fixed" parent="arm_shoulder_F3_0_link" name="arm_elbow_flex_servo">
-      <origin xyz="0 0 ${-AX12_HEIGHT-F10_HEIGHT+0.001}" rpy="0 ${M_PI} 0"/>
-    </xacro:call >
+
+
+    
+      <xacro:call macro="dynamixel_AX12_fixed" parent="arm_shoulder_F3_0_link" name="arm_elbow_flex_servo">
+      <xacro:if value="${phantom_x_100}">
+        <origin xyz="0 0 ${-AX12_HEIGHT-F10_HEIGHT+0.001}" rpy="0 0 0"/>
+      </xacro:if>
+      <xacro:if value="${not phantom_x_100}">
+        <origin xyz="0 0 ${-AX12_HEIGHT-F10_HEIGHT+0.001}" rpy="0 ${M_PI} 0"/>
+      </xacro:if>
+        
+      </xacro:call >
+    
+
+
     <xacro:call macro="bioloid_F4_revolute" parent="arm_elbow_flex_servo_link" name="arm_elbow_flex" color="${color}"
                          vlimit="${joints_vlimit}" llimit="${elbow_llimit}" ulimit="${elbow_ulimit}">
       <origin xyz="0 0 0" rpy="0 0 0"/>

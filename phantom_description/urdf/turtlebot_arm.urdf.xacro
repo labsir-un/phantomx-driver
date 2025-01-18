@@ -14,14 +14,17 @@
     <xacro:property name="wrist_llimit" value="-1.745"/>
     <xacro:property name="wrist_ulimit" value="1.745"/>
 
+    <xacro:arg name="phantom_x_100" default="true"/>
+    <xacro:property name="phantom_x_100" value="$(arg phantom_x_100)"/>
+
+
     <!-- Included URDF Files -->   
     <xacro:include filename="$(find phantom_description)/urdf/turtlebot_arm.xacro"/>
 
     <!-- <xacro:include filename="$(find phantom_control)/description/phantom.ros2_control.xacro"/> -->
     <xacro:include filename="$(find phantom_control)/description/physical_phantom.ros2_control.xacro"/>
 
-    <xacro:call macro="phantom_ros2_control" name="turtlebot_arm" prefix="">
-    </xacro:call>
+    <xacro:call macro="phantom_ros2_control" name="turtlebot_arm" prefix=""/>
 
     <!-- As we don't have here a turtlebot base, add a base_link link as its location reference -->
     <link name="base_link"/>
@@ -30,7 +33,7 @@
      </xacro:call>
     <!-- Turtlebot arm macro -->
     <xacro:call macro="turtlebot_arm" parent="arm_mount_link" color="Black" gripper_color="Black"
-                    pincher_gripper="true" turtlebot_gripper="false">               
+                    pincher_gripper="true" turtlebot_gripper="false" phantom_x_100="${phantom_x_100}">               
       <!-- Place the "floating" arm at the location it should be if mounted on a turtlebot,
            as pick and place and other demos assume this location -->
       <origin xyz="0 0 0"/>

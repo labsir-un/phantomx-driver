@@ -93,6 +93,11 @@ private:
 
   double PROTOCOL_VERSION_; 
 
+  // bool read_register(int lectureType); 
+  float byte2deg(double data); 
+  float byte2rad(double data); 
+
+  float ANGLE_UNIT_CONVERSION_ = 0.087891f; 
 
   template <typename HandleType>
   bool getInterface(const std::string& name, const std::string& interface_name, const size_t vector_index,

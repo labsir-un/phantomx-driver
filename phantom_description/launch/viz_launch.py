@@ -27,7 +27,14 @@ def generate_launch_description():
    
 
     # Now read the urdf 
+<<<<<<< Updated upstream
     doc = xacro.process_file(os.path.join(pkg_path,'urdf','px_100','px100.urdf.xacro' ), mappings={})
+=======
+    doc = xacro.process_file(os.path.join(pkg_path,'urdf', 'turtlebot_arm.urdf.xacro' ), mappings={
+        'phantom_x_100': 'false'
+    })
+    
+>>>>>>> Stashed changes
     robot_desc = doc.toprettyxml(indent='  ')
     # urdfModelPath= os.path.join(pkg_path, 'urdf', 'turtlebot_arm.urdf')
     

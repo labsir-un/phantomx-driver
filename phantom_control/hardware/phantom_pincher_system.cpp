@@ -225,9 +225,36 @@ CallbackReturn PhantomPincherSystem::on_configure(const rclcpp_lifecycle::State 
     RCLCPP_INFO(node_ -> get_logger(), "Succeeded to enable torque.");
   }
 
-   for (size_t i = 0; i < joint_commands_[POSITION_INTERFACE_INDEX].size(); ++i) {
-        joint_commands_[POSITION_INTERFACE_INDEX][i] = joint_states_[POSITION_INTERFACE_INDEX][i];
-    }
+
+       dxl_comm_result = packetHandler->read4ByteTxRx(
+              portHandler,
+              (uint8_t) 1,
+              ADDR_PRESENT_POSITION_,
+              reinterpret_cast<uint32_t *>(&present_position),
+              &dxl_error
+            );
+
+   
+
+  for(int i = 0; i < joint_states_[POSITION_INTERFACE_INDEX].size(); i++){
+    
+      // uint32_t encoder_lecture; 
+      dxl_comm_result = packetHandler->read4ByteTxRx(
+              portHandler,
+              (uint8_t) i + 1,
+              ADDR_PRESENT_POSITION_,
+              reinterpret_cast<uint32_t *>(&present_position),
+              &dxl_error
+            );
+
+      
+
+        joint_commands_[POSITION_INTERFACE_INDEX][i] = byte2rad(present_position); 
+        RCLCPP_INFO(node_ -> get_logger(), "%f",  byte2rad(present_position)); 
+        
+}
+
+    // RCLPP_INFO(node_ -> get_logger(), "All Joints are ") [Ignore this ajajajs]
 
   return CallbackReturn::SUCCESS;
 
@@ -303,12 +330,11 @@ hardware_interface::return_type PhantomPincherSystem::read(const rclcpp::Time& /
             // );
 
       // convert to angle 
-      float current_angle = 0.087891f * present_position * 3.14 / 180.0f; // Unitscale form dynamixel wizard 
+      float current_angle = 0.087891f * present_position * 3.14f / 180.0f; // Unitscale form dynamixel wizard 
 
       joint_states_[POSITION_INTERFACE_INDEX][i] = current_angle;
 
-      if(i == 0)
-        RCLCPP_INFO(node_ -> get_logger(), "  - [ID: %d] %f (deg)", i + 1, current_angle); 
+        RCLCPP_INFO(node_ -> get_logger(), "  - [ID: %d] %f (deg) / %f (rad)", i + 1, current_angle,current_angle * 3.14f / 180.0f ); 
 
   }
 
@@ -374,13 +400,12 @@ bool PhantomPincherSystem::getInterface(const std::string& name, const std::stri
 hardware_interface::return_type PhantomPincherSystem::write(const rclcpp::Time& /*time*/, const rclcpp::Duration& /*period*/)
 {
 
-  RCLCPP_INFO(node_ -> get_logger(), "[n: %d] [size: %d]", joint_commands_.size(), joint_commands_[POSITION_INTERFACE_INDEX].size()); 
-
   for(int i = 0; i < joint_commands_[POSITION_INTERFACE_INDEX].size(); i++){
     float cmd = joint_commands_[POSITION_INTERFACE_INDEX][i] * (180.0f / 3.14f) * 1.0f / 0.087891f; 
-    RCLCPP_INFO(node_ -> get_logger(), "[ID %d] to %2f", i + 1, cmd); 
     
-    if(false)
+    RCLCPP_INFO(node_ -> get_logger(), "[ID %d] to %f -> %f", i + 1, cmd, joint_commands_[POSITION_INTERFACE_INDEX][i]); 
+    
+    if(true)
      dxl_comm_result =
       packetHandler->write4ByteTxRx(
         portHandler,
@@ -457,8 +482,19 @@ hardware_interface::return_type PhantomPincherSystem::write(const rclcpp::Time& 
   //   topic_based_joint_commands_publisher_->publish(joint_state);
   // }
 
+  
   return hardware_interface::return_type::OK;
 }
+
+  float PhantomPincherSystem::byte2deg(double data){
+    return data * ANGLE_UNIT_CONVERSION_; // Conversion in degress 
+  }
+
+  float PhantomPincherSystem::byte2rad(double data){
+    return byte2deg(data) * 3.14f / 180.0f; 
+  }
+
+
 }  // end namespace topic_based_ros2_control
 
 #include "pluginlib/class_list_macros.hpp"

@@ -8,7 +8,7 @@
         <plugin>phantom_control/PhantomPincherSystem</plugin>
           
            <param name="device_name">/dev/tty.usbserial-FT5WIT8G</param>
-           <!-- <param name="baud_rate">1000000</param> -->
+           
           <!--  -->
       </hardware>
 
