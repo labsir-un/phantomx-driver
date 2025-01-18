@@ -7,6 +7,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(cv_bridge REQUIRED)
@@ -24,5 +25,14 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+# ball finder node
+add_executable(ball_finder src/ball_finder.cpp)
+ament_target_dependencies(ball_finder rclcpp std_msgs sensor_msgs cv_bridge image_transport OpenCV)
+
+install(TARGETS
+  ball_finder
+  DESTINATION lib/${PROJECT_NAME})
+
 
 ament_package()

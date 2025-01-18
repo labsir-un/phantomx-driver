@@ -19,15 +19,15 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz',  
-        parameters=[
-             '-d '+ os.path.join(pkg_path, 'config', 'rviz_viz.rviz')
+        arguments=[
+             '-d', os.path.join(pkg_path, 'config', 'rviz_px100.rviz')
          ]
         )
     
    
 
     # Now read the urdf 
-    doc = xacro.process_file(os.path.join(pkg_path,'urdf', 'turtlebot_arm.urdf.xacro' ), mappings={})
+    doc = xacro.process_file(os.path.join(pkg_path,'urdf','px_100','px100.urdf.xacro' ), mappings={})
     robot_desc = doc.toprettyxml(indent='  ')
     # urdfModelPath= os.path.join(pkg_path, 'urdf', 'turtlebot_arm.urdf')
     

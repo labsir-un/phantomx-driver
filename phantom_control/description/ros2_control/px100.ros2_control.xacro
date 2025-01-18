@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="ros2_control" params="robot_name prefix">
+    <ros2_control name="${robot_name}" type="system">
+      <hardware>
+        <plugin>phantom_control/PhantomPincherSystem</plugin>
+          
+           <param name="device_name">/dev/tty.usbserial-FT5WIT8G</param>
+           <!-- <param name="baud_rate">1000000</param> -->
+          <!--  -->
+      </hardware>
+
+      <joint name="${prefix}waist">
+        <command_interface name="position">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        
+      </joint>
+      <joint name="${prefix}shoulder">
+        <command_interface name="position">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        
+      </joint>
+
+        <joint name="${prefix}elbow">
+        <command_interface name="position">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        
+      </joint>
+
+          <joint name="${prefix}wrist_angle">
+        <command_interface name="position">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>        
+      </joint>
+        </ros2_control>
+    </xacro:macro>
+    
+</robot>

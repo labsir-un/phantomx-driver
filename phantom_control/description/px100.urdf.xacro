@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="px100">
+ <!-- Arguments  -->
+  <xacro:arg name="robot" default="px100"/>
+
+  <!-- Properties  -->
+  <xacro:property name="robot_name" value="$(arg robot)"/>
+  <xacro:property name="prefix" value=""/>
+  
+  <!-- Call the description file  -->
+ <xacro:include filename="$(find phantom_control)/description/ros2_control/${robot_name}.ros2_control.xacro"/>
+ <xacro:include filename="$(find phantom_description)/urdf/${robot_name}/${robot_name}.urdf.xacro"/>
+
+<xacro:call macro="ros2_control" robot_name="${robot_name}" prefix=""/>
+</robot>
