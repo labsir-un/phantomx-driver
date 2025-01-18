@@ -43,6 +43,11 @@ You should be seeing the coppelia scene and rviz2 running up. Under the hood, ro
 ### The PhantomX Pincher 
 All the doc for de Px-100 version can be found here [https://emanual.robotis.com/docs/en/dxl/x/xl430-w250/]()
 
+## Vizualization and Broadcasting 
+This allow to use rviz2 to observe a digital twin based on the encoder lectures from the physical hardware. 
+```bash
+ros2 launch phantom_control px100_bringup_launch.py
+```
 
 ### Author 
 Andrés Morales Martínez (amoralesma@unal.edu.co) - Mechatronics Engineer Student 

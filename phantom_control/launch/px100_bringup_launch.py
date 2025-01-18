@@ -33,7 +33,7 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz',  
-         arguments=["-d", os.path.join(pkg_dir_control, 'config', 'coppelia_rgb_depth_rviz.rviz')]
+         arguments=["-d", os.path.join(pkg_dir_control, 'rviz', 'broadcaster_viz.rviz')]
         )
     
     robot_state_pub = Node(
@@ -96,6 +96,6 @@ def generate_launch_description():
         # joint_state_pub,
         robot_state_pub,
         control_node,
-        # position_controller_node,
+        position_controller_node,
         joint_broadcaster_node
         ])

@@ -85,6 +85,7 @@ install(DIRECTORY
   launch
   config
   hardware
+  rviz
   description
   DESTINATION share/${PROJECT_NAME}/
 )

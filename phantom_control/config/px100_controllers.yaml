@@ -47,10 +47,10 @@ joint_state_broadcaster:
 #     open_loop_control: false
 #     set_last_command_interface_value_as_state_on_activation: true
 
-# position_controller:
-#   ros__parameters:
-#     joints:
-#       - arm_shoulder_pan_joint
-#       - arm_shoulder_lift_joint
-#       - arm_elbow_flex_joint
-#       - arm_wrist_flex_joint
+position_controller:
+  ros__parameters:
+    joints:
+      - waist
+      - shoulder
+      - elbow
+      - wrist_angle
