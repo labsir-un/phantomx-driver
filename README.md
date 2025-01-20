@@ -28,29 +28,4 @@ build and source the project
 colcon build --symlink-install && source install/setup.bash
 ```
 
-## ros_control example 
-Run the bringup `phantom_control` launchfile
-```bash
-ros2 launch phantom_control bringup_launch.py
-```
-You should be seeing the coppelia scene and rviz2 running up. Under the hood, ros2_control  is handling the phantom joints_states readings with a `joint_state_broadcaster` and a PositionController is commanding their joint config. 
-
-
-<img width="70%" src="https://github.com/labsir-un/phantomx-driver/blob/main/docs/ros_control_example.gif"/> 
-
-
-
-### The PhantomX Pincher 
-All the doc for de Px-100 version can be found here [https://emanual.robotis.com/docs/en/dxl/x/xl430-w250/]()
-
-## Vizualization and Broadcasting 
-This allow to use rviz2 to observe a digital twin based on the encoder lectures from the physical hardware. 
-```bash
-ros2 launch phantom_control px100_bringup_launch.py
-```
-
-### Author 
-Andrés Morales Martínez (amoralesma@unal.edu.co) - Mechatronics Engineer Student 
-
----
-This packages were made for LabSir (Laboratorios de Sistemas Inteligentes Robotizados) 
+Con esto terminamos la primera session!
