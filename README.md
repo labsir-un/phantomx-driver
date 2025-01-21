@@ -1,6 +1,7 @@
-## Lab install tools
+## Lab Install tools for ROS2 practice
 
-## 1- Install python
+
+### 1- Install python
 
 - **Instal Python** from. [Download](https://www.python.org/downloads/)
 
@@ -26,3 +27,8 @@ colcon build --symlink-install && source install/setup.bash
 ```
 
 Con esto terminamos la primera session!
+
+## Additional tool recomended
+- **VScode**
+- **Iterm** Other terminal aplicattion
+- **Arc** Browser for mac.
