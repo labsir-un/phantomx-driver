@@ -1,5 +1,10 @@
-## Getting started 
-### Install ROS2
+## Lab install tools
+
+## 1- Install python
+
+- **Instal Python** from. [Download](https://www.python.org/downloads/)
+
+### 2- Install ROS2
 Install ROS2 humble and have it running. Here are some options depending in the OS. 
 - **Ubuntu Jammy 22.04 LTS** from debian ource. [ros2 docs install tutorial](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)
 - **MacOS**: Use mamba and _robostack_ for installing the binaries for ros-humble. [robostack tutorial](https://robostack.github.io/GettingStarted.html)
