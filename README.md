@@ -1,11 +1,3 @@
-# PhantomX Driver
-This repo includes the basic packges for using a phantomX pincher arm with ROS2 (humble).
-Includes: 
-- `phantom_control`: For ros2_control integration. Custom topic-based HW plugin implementation for coppelia control. 
-- `phantom_coppelia`: CoppeliaSim scene bringup templates. Ready to use with phantom_control
-- `phantom_description`: URDF/Xacro files for robot states. 
-
-
 ## Getting started 
 ### Install ROS2
 Install ROS2 humble and have it running. Here are some options depending in the OS. 
