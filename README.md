@@ -114,7 +114,7 @@ Conda permite gestionar entornos virtuales de forma eficiente, lo que resulta cr
 Install ROS2 humble and have it running. Here are some options depending in the OS. 
 - **Ubuntu Jammy 22.04 LTS** from debian ource. [ros2 docs install tutorial](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)
 - **MacOS**: Use mamba and _robostack_ for installing the binaries for ros-humble. [robostack tutorial](https://robostack.github.io/GettingStarted.html)
-- **Windows**: Use WSL for using a Linux Kernel and install ros as in Ubuntu OS
+- **Windows**: Use WSL for using a Linux Kernel and install ros as in Ubuntu OS . [here](https://learn.microsoft.com/es-es/windows/wsl/install)
 
 > Rember to source the ros workspace
 
